@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator Size Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            
+            /* Hide scrollbar */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+        
+        /* Hide scrollbar for WebKit browsers */
+        body::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Global scrollbar hiding */
+        * {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        *::-webkit-scrollbar {
+            display: none;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .size-test {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .test-frame {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+        }
+        .test-frame h3 {
+            margin: 0 0 15px 0;
+            color: #ff6b6b;
+        }
+        .iframe-container {
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+            margin: 0 auto;
+        }
+        iframe {
+            border: none;
+            display: block;
+        }
+        
+        /* Different viewport sizes */
+        .mobile-portrait { width: 375px; height: 667px; }
+        .mobile-landscape { width: 667px; height: 375px; }
+        .tablet-portrait { width: 768px; height: 1024px; }
+        .tablet-landscape { width: 1024px; height: 768px; }
+        .desktop-small { width: 1200px; height: 800px; }
+        
+        .instructions {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .instructions h2 {
+            color: #ff6b6b;
+            margin-top: 0;
+        }
+        .test-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .step {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #4ecdc4;
+        }
+        .step h4 {
+            margin: 0 0 8px 0;
+            color: #4ecdc4;
+        }
+        
+        @media (max-width: 768px) {
+            .size-test {
+                grid-template-columns: 1fr;
+            }
+            .mobile-portrait, .mobile-landscape, .tablet-portrait, 
+            .tablet-landscape, .desktop-small {
+                width: 100%;
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1 style="text-align: center; margin-bottom: 30px;">📐 Calculator Size & Visibility Test</h1>
+        
+        <div class="instructions">
+            <h2>🎯 Testing Instructions</h2>
+            <p>This page tests the calculator's visibility and sizing across different screen dimensions. Each frame below simulates a different device size.</p>
+            
+            <div class="test-steps">
+                <div class="step">
+                    <h4>1. Standard Mode Test</h4>
+                    <p>• Check if calculator fits properly<br>• Verify all buttons are visible<br>• Test basic calculations</p>
+                </div>
+                <div class="step">
+                    <h4>2. Scientific Mode Test</h4>
+                    <p>• Click "Scientific" toggle<br>• Ensure all scientific functions are visible<br>• Check if scrolling works if needed</p>
+                </div>
+                <div class="step">
+                    <h4>3. Responsive Test</h4>
+                    <p>• Resize your browser window<br>• Check different orientations<br>• Verify smooth transitions</p>
+                </div>
+                <div class="step">
+                    <h4>4. Mobile Test</h4>
+                    <p>• Open on actual mobile device<br>• Test portrait/landscape modes<br>• Verify touch interactions</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="size-test">
+            <div class="test-frame">
+                <h3>📱 Mobile Portrait<br>(375×667px)</h3>
+                <div class="iframe-container mobile-portrait">
+                    <iframe src="index.html" width="375" height="667"></iframe>
+                </div>
+            </div>
+            
+            <div class="test-frame">
+                <h3>📱 Mobile Landscape<br>(667×375px)</h3>
+                <div class="iframe-container mobile-landscape">
+                    <iframe src="index.html" width="667" height="375"></iframe>
+                </div>
+            </div>
+            
+            <div class="test-frame">
+                <h3>📱 Tablet Portrait<br>(768×1024px)</h3>
+                <div class="iframe-container tablet-portrait">
+                    <iframe src="index.html" width="768" height="600"></iframe>
+                </div>
+            </div>
+            
+            <div class="test-frame">
+                <h3>📱 Tablet Landscape<br>(1024×768px)</h3>
+                <div class="iframe-container tablet-landscape">
+                    <iframe src="index.html" width="800" height="500"></iframe>
+                </div>
+            </div>
+            
+            <div class="test-frame">
+                <h3>🖥️ Desktop<br>(1200×800px)</h3>
+                <div class="iframe-container desktop-small">
+                    <iframe src="index.html" width="800" height="600"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h2>✅ What to Look For</h2>
+            <div class="test-steps">
+                <div class="step">
+                    <h4>✅ Proper Sizing</h4>
+                    <p>Calculator should fit within viewport without horizontal scrolling</p>
+                </div>
+                <div class="step">
+                    <h4>✅ Scientific Visibility</h4>
+                    <p>All scientific functions should be visible when toggled</p>
+                </div>
+                <div class="step">
+                    <h4>✅ Smooth Transitions</h4>
+                    <p>Mode switching should be smooth with proper animations</p>
+                </div>
+                <div class="step">
+                    <h4>✅ No Overflow</h4>
+                    <p>Calculator should not extend beyond screen boundaries</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 40px 0; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 15px;">
+            <h3>🚀 Test Your Calculator</h3>
+            <p style="margin: 10px 0;">Open the calculator in different browser sizes and devices</p>
+            <div style="margin-top: 20px;">
+                <a href="index.html" style="display: inline-block; background: #ff6b6b; color: white; padding: 12px 24px; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 5px;">Full Calculator</a>
+                <a href="responsive-test.html" style="display: inline-block; background: #4ecdc4; color: white; padding: 12px 24px; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 5px;">Responsive Demo</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
