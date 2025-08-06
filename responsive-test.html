@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Calculator Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            
+            /* Hide scrollbar */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+        
+        /* Hide scrollbar for WebKit browsers */
+        body::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Global scrollbar hiding */
+        * {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        *::-webkit-scrollbar {
+            display: none;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .device-frame {
+            background: #333;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .device-title {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .iframe-container {
+            border-radius: 15px;
+            overflow: hidden;
+            background: white;
+        }
+        iframe {
+            width: 100%;
+            border: none;
+            display: block;
+        }
+        .mobile { width: 375px; height: 667px; margin: 0 auto; }
+        .tablet { width: 768px; height: 1024px; margin: 0 auto; }
+        .desktop { width: 1200px; height: 800px; margin: 0 auto; }
+        
+        .features {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .feature-item {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #ff6b6b;
+        }
+        .feature-item h4 {
+            margin: 0 0 8px 0;
+            color: #ff6b6b;
+        }
+        .feature-item p {
+            margin: 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .device-frame {
+                padding: 10px;
+            }
+            .mobile, .tablet, .desktop {
+                width: 100%;
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1 style="text-align: center; margin-bottom: 30px;">📱 Responsive Calculator Test</h1>
+        
+        <div class="features">
+            <h2>🌟 Responsive Features</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h4>📱 Mobile Optimized</h4>
+                    <p>Touch-friendly buttons, haptic feedback, and optimized layouts for small screens</p>
+                </div>
+                <div class="feature-item">
+                    <h4>📱 Tablet Ready</h4>
+                    <p>Perfect sizing for tablet devices in both portrait and landscape orientations</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🖥️ Desktop Enhanced</h4>
+                    <p>Full keyboard support, advanced animations, and particle effects</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🔄 Auto-Adaptive</h4>
+                    <p>Automatically adjusts interface based on screen size and device capabilities</p>
+                </div>
+                <div class="feature-item">
+                    <h4>⚡ Performance Smart</h4>
+                    <p>Reduces animations on low-end devices for optimal performance</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🎯 PWA Support</h4>
+                    <p>Install as a native app on mobile devices with offline capability</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="device-frame">
+            <div class="device-title">📱 Mobile View (375px × 667px)</div>
+            <div class="iframe-container mobile">
+                <iframe src="index.html" height="667"></iframe>
+            </div>
+        </div>
+
+        <div class="device-frame">
+            <div class="device-title">📱 Tablet View (768px × 1024px)</div>
+            <div class="iframe-container tablet">
+                <iframe src="index.html" height="600"></iframe>
+            </div>
+        </div>
+
+        <div class="device-frame">
+            <div class="device-title">🖥️ Desktop View (1200px × 800px)</div>
+            <div class="iframe-container desktop">
+                <iframe src="index.html" height="600"></iframe>
+            </div>
+        </div>
+
+        <div class="features">
+            <h2>🎯 Testing Instructions</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h4>Mobile Testing</h4>
+                    <p>• Open on your phone<br>• Try portrait/landscape<br>• Test touch interactions<br>• Add to home screen</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Tablet Testing</h4>
+                    <p>• Test on iPad/Android tablet<br>• Check both orientations<br>• Verify button sizing<br>• Test scientific mode</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Desktop Testing</h4>
+                    <p>• Use keyboard shortcuts<br>• Hover for particle effects<br>• Resize browser window<br>• Test all animations</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Responsive Testing</h4>
+                    <p>• Use browser dev tools<br>• Test different screen sizes<br>• Check breakpoints<br>• Verify smooth transitions</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 40px 0; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 15px;">
+            <h3>🚀 Access Your Calculator</h3>
+            <p style="margin: 10px 0;">Open <strong>http://localhost:8000</strong> in your browser</p>
+            <p style="margin: 10px 0;">Or scan this URL with your mobile device to test on real hardware!</p>
+            <div style="margin-top: 20px;">
+                <a href="index.html" style="display: inline-block; background: #ff6b6b; color: white; padding: 12px 24px; text-decoration: none; border-radius: 25px; font-weight: bold;">Launch Calculator</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
