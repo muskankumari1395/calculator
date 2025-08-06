@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invisible Scrollbar Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            
+            /* Hide scrollbar */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+        
+        /* Hide scrollbar for WebKit browsers */
+        body::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Global scrollbar hiding */
+        * {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        *::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .demo-section {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .demo-section h2 {
+            color: #ff6b6b;
+            margin-bottom: 20px;
+        }
+        
+        .scrollable-demo {
+            height: 200px;
+            overflow-y: auto;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .tall-content {
+            height: 500px;
+            background: linear-gradient(to bottom, 
+                rgba(255,107,107,0.3) 0%, 
+                rgba(78,205,196,0.3) 50%, 
+                rgba(165,94,234,0.3) 100%);
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .feature-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #4ecdc4;
+        }
+        
+        .feature-card h3 {
+            color: #4ecdc4;
+            margin-bottom: 10px;
+        }
+        
+        .calculator-preview {
+            width: 100%;
+            max-width: 400px;
+            height: 600px;
+            border: none;
+            border-radius: 15px;
+            margin: 20px auto;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .scroll-indicator {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .scroll-indicator p {
+            margin: 5px 0;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .scroll-indicator {
+                display: none;
+            }
+            .calculator-preview {
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1 style="margin-bottom: 30px;">👻 Invisible Scrollbar Demo</h1>
+        
+        <div class="demo-section">
+            <h2>✨ Seamless Scrolling Experience</h2>
+            <p>Your calculator now features <strong>invisible scrollbars</strong> for a clean, modern interface. You can still scroll normally, but without the visual clutter of scrollbars!</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>🎯 Clean Design</h3>
+                    <p>No visible scrollbars cluttering the interface while maintaining full scrolling functionality</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🌐 Cross-Browser</h3>
+                    <p>Works on Chrome, Firefox, Safari, Edge, and all modern browsers</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📱 Mobile Friendly</h3>
+                    <p>Perfect for touch devices where scrollbars are less important</p>
+                </div>
+                <div class="feature-card">
+                    <h3>⚡ Smooth Scrolling</h3>
+                    <p>Enhanced with smooth scrolling behavior for better user experience</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2>🧪 Try Scrolling This Demo</h2>
+            <p>The box below has scrollable content, but notice there's no visible scrollbar:</p>
+            
+            <div class="scrollable-demo">
+                <div class="tall-content">
+                    <div>
+                        <h3>🔝 Top of Scrollable Content</h3>
+                        <p>This content is taller than the container. Try scrolling down to see more content. Notice how there's no visible scrollbar, but scrolling still works perfectly!</p>
+                    </div>
+                    
+                    <div style="text-align: center; opacity: 0.7;">
+                        <p>⬇️ Scroll down to see more ⬇️</p>
+                        <p>🖱️ Use mouse wheel or touch gestures</p>
+                    </div>
+                    
+                    <div>
+                        <h3>🔽 Bottom of Scrollable Content</h3>
+                        <p>You've reached the bottom! The scrolling worked seamlessly without any visible scrollbar. This creates a cleaner, more modern interface.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2>🧮 Your Calculator with Invisible Scrollbars</h2>
+            <p>Here's your calculator running with the new invisible scrollbar feature:</p>
+            
+            <iframe src="index.html" class="calculator-preview"></iframe>
+            
+            <p style="margin-top: 20px; opacity: 0.8;">
+                <strong>Try this:</strong> Switch to Scientific mode and notice how the interface remains clean even when scrolling is needed on smaller screens.
+            </p>
+        </div>
+        
+        <div class="demo-section">
+            <h2>🎯 Benefits of Invisible Scrollbars</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>🎨 Aesthetic Appeal</h3>
+                    <p>Cleaner, more modern interface without scrollbar visual clutter</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📏 More Space</h3>
+                    <p>Scrollbars don't take up valuable screen real estate</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎯 Focus</h3>
+                    <p>Users focus on content rather than interface elements</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📱 Consistency</h3>
+                    <p>Matches mobile app behavior where scrollbars are typically hidden</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2>🚀 Technical Implementation</h2>
+            <div style="text-align: left; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h4 style="color: #4ecdc4;">CSS Properties Used:</h4>
+                <code style="color: #ff6b6b;">
+                    /* Firefox */<br>
+                    scrollbar-width: none;<br><br>
+                    
+                    /* Internet Explorer 10+ */<br>
+                    -ms-overflow-style: none;<br><br>
+                    
+                    /* WebKit browsers (Chrome, Safari, Edge) */<br>
+                    ::-webkit-scrollbar {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;display: none;<br>
+                    }
+                </code>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin: 40px 0; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 15px;">
+            <h3>🎉 Experience Your Enhanced Calculator</h3>
+            <p style="margin: 10px 0;">Clean interface, invisible scrollbars, perfect functionality!</p>
+            <div style="margin-top: 20px;">
+                <a href="index.html" style="display: inline-block; background: #ff6b6b; color: white; padding: 12px 24px; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 5px;">Launch Calculator</a>
+                <a href="size-test.html" style="display: inline-block; background: #4ecdc4; color: white; padding: 12px 24px; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 5px;">Size Tests</a>
+            </div>
+        </div>
+        
+        <!-- Add some extra content to make the page scrollable -->
+        <div style="height: 200px; display: flex; align-items: center; justify-content: center; opacity: 0.5;">
+            <p>👆 Scroll back up to see the demo again 👆</p>
+        </div>
+    </div>
+    
+    <div class="scroll-indicator">
+        <p>📜 Scrollable</p>
+        <p>👻 No scrollbar</p>
+        <p>✨ Clean UI</p>
+    </div>
+</body>
+</html>
