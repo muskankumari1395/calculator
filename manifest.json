@@ -1,0 +1,37 @@
+{
+  "name": "Advanced Calculator - Standard & Scientific",
+  "short_name": "Calculator",
+  "description": "A stunning calculator with both standard and scientific modes featuring beautiful animations",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#667eea",
+  "orientation": "portrait-primary",
+  "categories": ["utilities", "productivity"],
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%23667eea' rx='20'/><rect x='20' y='20' width='152' height='152' fill='rgba(255,255,255,0.1)' rx='15'/><text x='96' y='120' font-family='Arial' font-size='60' fill='white' text-anchor='middle'>🧮</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%23667eea' rx='50'/><rect x='50' y='50' width='412' height='412' fill='rgba(255,255,255,0.1)' rx='40'/><text x='256' y='320' font-family='Arial' font-size='160' fill='white' text-anchor='middle'>🧮</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 844'><rect width='390' height='844' fill='%23000'/><rect x='20' y='100' width='350' height='600' fill='%23667eea' rx='25'/><text x='195' y='200' font-family='Arial' font-size='24' fill='white' text-anchor='middle'>Advanced Calculator</text></svg>",
+      "sizes": "390x844",
+      "type": "image/svg+xml",
+      "form_factor": "narrow",
+      "label": "Calculator in portrait mode"
+    }
+  ],
+  "prefer_related_applications": false
+}
