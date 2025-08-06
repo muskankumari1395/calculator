@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="theme-color" content="#1a1a2e" />
+    <meta name="description" content="Advanced Calculator with Standard and Scientific modes featuring stunning animations" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Advanced Calculator - Standard & Scientific</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- PWA support -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' fill='%23667eea'/><text x='90' y='110' font-family='Arial' font-size='60' fill='white' text-anchor='middle'>🧮</text></svg>">
+  </head>
+  <body>
+    <!-- Floating Geometric Shapes -->
+    <div class="floating-shapes">
+      <div class="floating-shape"></div>
+      <div class="floating-shape"></div>
+      <div class="floating-shape"></div>
+      <div class="floating-shape"></div>
+      <div class="floating-shape"></div>
+      <div class="floating-shape"></div>
+      <div class="floating-shape"></div>
+      <div class="floating-shape"></div>
+    </div>
+    
+    <!-- Animated Particles -->
+    <div class="animated-particles" id="particles"></div>
+    
+    <div class="container">
+      <div class="calculator" id="calculator">
+        <!-- Header with mode toggle -->
+        <div class="header">
+          <h2 class="calculator-title">Calculator</h2>
+          <button class="mode-toggle" id="modeToggle">
+            <span class="toggle-text">Scientific</span>
+            <div class="toggle-slider"></div>
+          </button>
+        </div>
+
+        <!-- Display -->
+        <div class="display-container">
+          <input type="text" id="inputBox" placeholder="0" readonly />
+          <div class="display-overlay"></div>
+        </div>
+
+        <!-- Scientific Functions (Hidden by default) -->
+        <div class="scientific-panel" id="scientificPanel">
+          <div class="sci-row">
+            <button class="button scientific" data-func="sin">sin</button>
+            <button class="button scientific" data-func="cos">cos</button>
+            <button class="button scientific" data-func="tan">tan</button>
+            <button class="button scientific" data-func="log">log</button>
+            <button class="button scientific" data-func="ln">ln</button>
+          </div>
+          <div class="sci-row">
+            <button class="button scientific" data-func="sqrt">√</button>
+            <button class="button scientific" data-func="pow">x²</button>
+            <button class="button scientific" data-func="cube">x³</button>
+            <button class="button scientific" data-func="powxy">x^y</button>
+            <button class="button scientific" data-func="factorial">x!</button>
+          </div>
+          <div class="sci-row">
+            <button class="button scientific" data-func="pi">π</button>
+            <button class="button scientific" data-func="e">e</button>
+            <button class="button scientific" data-func="exp">exp</button>
+            <button class="button scientific" data-func="abs">|x|</button>
+            <button class="button scientific" data-func="inv">1/x</button>
+          </div>
+        </div>
+
+        <!-- Standard Calculator Buttons -->
+        <div class="button-grid">
+          <div class="button-row">
+            <button class="button operator clear">AC</button>
+            <button class="button operator">DEL</button>
+            <button class="button operator">%</button>
+            <button class="button operator">/</button>
+          </div>
+          <div class="button-row">
+            <button class="button number">7</button>
+            <button class="button number">8</button>
+            <button class="button number">9</button>
+            <button class="button operator">*</button>
+          </div>
+          <div class="button-row">
+            <button class="button number">4</button>
+            <button class="button number">5</button>
+            <button class="button number">6</button>
+            <button class="button operator">-</button>
+          </div>
+          <div class="button-row">
+            <button class="button number">1</button>
+            <button class="button number">2</button>
+            <button class="button number">3</button>
+            <button class="button operator">+</button>
+          </div>
+          <div class="button-row">
+            <button class="button number">00</button>
+            <button class="button number">0</button>
+            <button class="button operator">.</button>
+            <button class="button equalBtn">=</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
