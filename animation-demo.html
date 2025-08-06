@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stunning Background Animations Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            min-height: 100vh;
+            
+            /* Hide scrollbar */
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        body::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .demo-section {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .demo-section h2 {
+            color: #ff6b6b;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 28px;
+        }
+        
+        .animation-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .animation-card {
+            background: rgba(255,255,255,0.08);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .animation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.3);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+        
+        .animation-card h3 {
+            color: #4ecdc4;
+            margin-bottom: 15px;
+        }
+        
+        .animation-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .calculator-preview {
+            width: 100%;
+            max-width: 500px;
+            height: 700px;
+            border: none;
+            border-radius: 20px;
+            margin: 20px auto;
+            display: block;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .feature-item {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #ff6b6b;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(5px);
+        }
+        
+        .feature-item h4 {
+            color: #ff6b6b;
+            margin: 0 0 10px 0;
+        }
+        
+        .feature-item p {
+            margin: 0;
+            opacity: 0.9;
+        }
+        
+        .controls {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .control-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .control-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .animation-preview {
+            position: relative;
+            height: 200px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            margin: 20px 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .preview-shape {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            animation: previewFloat 3s ease-in-out infinite;
+            margin: 0 10px;
+        }
+        
+        .preview-shape:nth-child(2) {
+            background: linear-gradient(45deg, #a55eea, #26de81);
+            animation-delay: -1s;
+            transform: rotate(45deg);
+            border-radius: 20%;
+        }
+        
+        .preview-shape:nth-child(3) {
+            background: linear-gradient(45deg, #feca57, #ff9ff3);
+            animation-delay: -2s;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            border-radius: 0;
+        }
+        
+        @keyframes previewFloat {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg) scale(1);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg) scale(1.1);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .calculator-preview {
+                height: 600px;
+            }
+            .demo-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1 style="text-align: center; margin-bottom: 40px; font-size: 36px;">✨ Stunning Background Animations</h1>
+        
+        <div class="demo-section">
+            <h2>🎨 Animation Layers Overview</h2>
+            <p style="text-align: center; font-size: 18px; opacity: 0.9; margin-bottom: 30px;">
+                Your calculator now features multiple layers of stunning background animations that create an immersive, dynamic experience.
+            </p>
+            
+            <div class="animation-showcase">
+                <div class="animation-card">
+                    <h3>🌊 Aurora Background</h3>
+                    <div class="animation-preview">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(45deg, rgba(255, 107, 107, 0.3), rgba(78, 205, 196, 0.3), rgba(165, 94, 234, 0.3)); background-size: 200% 200%; animation: auroraShift 4s ease-in-out infinite;"></div>
+                    </div>
+                    <p>Flowing aurora-like gradients that shift and move across the background, creating a mesmerizing base layer.</p>
+                </div>
+                
+                <div class="animation-card">
+                    <h3>🔮 Floating Shapes</h3>
+                    <div class="animation-preview">
+                        <div class="preview-shape"></div>
+                        <div class="preview-shape"></div>
+                        <div class="preview-shape"></div>
+                    </div>
+                    <p>Geometric shapes that float, rotate, and scale with smooth animations. Each shape has unique timing and movement patterns.</p>
+                </div>
+                
+                <div class="animation-card">
+                    <h3>✨ Particle System</h3>
+                    <div class="animation-preview">
+                        <div style="position: absolute; width: 4px; height: 4px; background: #4ecdc4; border-radius: 50%; animation: particleFloat 2s linear infinite; left: 20%;"></div>
+                        <div style="position: absolute; width: 3px; height: 3px; background: #ff6b6b; border-radius: 50%; animation: particleFloat 2.5s linear infinite; left: 40%; animation-delay: -0.5s;"></div>
+                        <div style="position: absolute; width: 5px; height: 5px; background: #a55eea; border-radius: 50%; animation: particleFloat 3s linear infinite; left: 60%; animation-delay: -1s;"></div>
+                        <div style="position: absolute; width: 2px; height: 2px; background: #feca57; border-radius: 50%; animation: particleFloat 2.2s linear infinite; left: 80%; animation-delay: -1.5s;"></div>
+                    </div>
+                    <p>Floating particles that rise from bottom to top with varying sizes, colors, and speeds for dynamic movement.</p>
+                </div>
+                
+                <div class="animation-card">
+                    <h3>🖱️ Interactive Effects</h3>
+                    <div class="animation-preview" style="cursor: pointer;" onmousemove="moveShapes(event)">
+                        <div class="preview-shape" id="interactive1"></div>
+                        <div class="preview-shape" id="interactive2"></div>
+                        <div class="preview-shape" id="interactive3"></div>
+                    </div>
+                    <p>Shapes respond to mouse movement on desktop, creating an interactive parallax effect that follows your cursor.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2>🎯 Animation Features</h2>
+            
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h4>🌈 Multi-Layer Design</h4>
+                    <p>Four distinct animation layers working together: Aurora background, radial gradients, floating shapes, and particle system</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🎭 Dynamic Interactions</h4>
+                    <p>Mouse movement creates parallax effects, calculator hover enhances shapes, and calculations trigger special effects</p>
+                </div>
+                <div class="feature-item">
+                    <h4>📱 Performance Optimized</h4>
+                    <p>Automatically reduces complexity on mobile devices and low-end hardware for smooth performance</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🎨 Color Harmony</h4>
+                    <p>Carefully chosen color palette with gradients that complement the calculator's glass morphism design</p>
+                </div>
+                <div class="feature-item">
+                    <h4>⚡ Smooth Animations</h4>
+                    <p>60fps animations using CSS transforms and hardware acceleration for buttery smooth motion</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🔧 Accessibility Aware</h4>
+                    <p>Respects user's motion preferences and provides reduced animation mode for accessibility</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2>🧮 Your Enhanced Calculator</h2>
+            <p style="text-align: center; margin-bottom: 30px;">
+                Experience the calculator with all the stunning background animations in action:
+            </p>
+            
+            <iframe src="index.html" class="calculator-preview"></iframe>
+            
+            <div class="controls">
+                <button class="control-button" onclick="window.open('index.html', '_blank')">🚀 Launch Full Calculator</button>
+                <button class="control-button" onclick="window.open('size-test.html', '_blank')">📐 Size Tests</button>
+                <button class="control-button" onclick="window.open('responsive-test.html', '_blank')">📱 Responsive Demo</button>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2>🎪 Animation Specifications</h2>
+            
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h4>Aurora Layer</h4>
+                    <p><strong>Duration:</strong> 20s<br><strong>Effect:</strong> Gradient position shifting with rotation<br><strong>Colors:</strong> Multi-hue radial gradients</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Floating Shapes</h4>
+                    <p><strong>Count:</strong> 8 shapes<br><strong>Duration:</strong> 16-24s each<br><strong>Effects:</strong> Float, rotate, scale, glow</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Particle System</h4>
+                    <p><strong>Count:</strong> 15-25 particles<br><strong>Duration:</strong> 8-12s<br><strong>Movement:</strong> Bottom-to-top floating</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Interactive Layer</h4>
+                    <p><strong>Response:</strong> Mouse tracking<br><strong>Effect:</strong> Parallax movement<br><strong>Smoothing:</strong> RequestAnimationFrame</p>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin: 50px 0; padding: 30px; background: rgba(255,255,255,0.05); border-radius: 20px;">
+            <h3>🌟 Experience the Magic</h3>
+            <p style="margin: 15px 0; font-size: 18px;">Your calculator now features cinema-quality background animations!</p>
+            <button class="control-button" onclick="window.open('index.html', '_blank')" style="font-size: 18px; padding: 15px 30px;">✨ Launch Animated Calculator ✨</button>
+        </div>
+    </div>
+    
+    <script>
+        // Add aurora animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes auroraShift {
+                0%, 100% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+            }
+            @keyframes particleFloat {
+                0% { transform: translateY(50px); opacity: 0; }
+                10% { opacity: 1; }
+                90% { opacity: 1; }
+                100% { transform: translateY(-50px); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Interactive shape movement
+        function moveShapes(event) {
+            const rect = event.currentTarget.getBoundingClientRect();
+            const x = (event.clientX - rect.left) / rect.width - 0.5;
+            const y = (event.clientY - rect.top) / rect.height - 0.5;
+            
+            const shapes = ['interactive1', 'interactive2', 'interactive3'];
+            shapes.forEach((id, index) => {
+                const shape = document.getElementById(id);
+                if (shape) {
+                    const moveX = x * (index + 1) * 20;
+                    const moveY = y * (index + 1) * 20;
+                    shape.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${x * 45}deg)`;
+                }
+            });
+        }
+    </script>
+</body>
+</html>
