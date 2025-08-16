@@ -6,11 +6,15 @@ class AdvancedCalculator {
         this.modeToggle = document.getElementById('modeToggle');
         this.scientificPanel = document.getElementById('scientificPanel');
         this.toggleText = document.querySelector('.toggle-text');
+        this.themeToggle = document.getElementById('themeToggle');
+        this.historyList = document.getElementById('historyList');
+        this.clearHistoryBtn = document.getElementById('clearHistory');
         
         this.currentInput = "";
         this.isScientificMode = false;
         this.lastResult = 0;
         this.memory = 0;
+        this.history = [];
         
         this.init();
     }
@@ -18,12 +22,22 @@ class AdvancedCalculator {
     init() {
         this.attachEventListeners();
         this.setupKeyboardSupport();
+        this.restorePreferences();
         this.updateDisplay();
+        this.renderHistory();
     }
     
     attachEventListeners() {
         // Mode toggle
         this.modeToggle.addEventListener('click', () => this.toggleMode());
+
+        // Theme toggle
+        if (this.themeToggle) {
+            this.themeToggle.addEventListener('click', () => this.toggleTheme());
+        }
+        if (this.clearHistoryBtn) {
+            this.clearHistoryBtn.addEventListener('click', () => this.clearHistory());
+        }
         
         // All calculator buttons
         document.querySelectorAll('.button').forEach(button => {
@@ -133,6 +147,9 @@ class AdvancedCalculator {
         setTimeout(() => {
             this.modeToggle.style.transform = 'scale(1)';
         }, 150);
+
+        // Persist mode preference
+        this.persistPreferences();
     }
     
     ensureScientificPanelVisible() {
@@ -250,6 +267,9 @@ class AdvancedCalculator {
             this.lastResult = result;
             this.updateDisplay();
             this.addResultAnimation();
+
+            // Log to history
+            this.pushHistory({ expression: `${func}(${currentValue})`, result: this.currentInput });
             
         } catch (error) {
             this.showError();
@@ -299,8 +319,13 @@ class AdvancedCalculator {
                 throw new Error('Invalid calculation');
             }
             
+            const formatted = this.formatResult(result);
+
+            // Save to history before updating display
+            this.pushHistory({ expression: this.currentInput, result: formatted });
+
             this.lastResult = result;
-            this.currentInput = this.formatResult(result);
+            this.currentInput = formatted;
             this.updateDisplay();
             this.addResultAnimation();
             
@@ -338,6 +363,56 @@ class AdvancedCalculator {
     updateDisplay() {
         this.input.value = this.currentInput || "0";
     }
+
+    // === History ===
+    pushHistory(entry) {
+        // Keep last 20 items
+        this.history.unshift({ ...entry, time: Date.now() });
+        if (this.history.length > 20) this.history.pop();
+        this.persistPreferences();
+        this.renderHistory();
+    }
+
+    renderHistory() {
+        if (!this.historyList) return;
+        this.historyList.innerHTML = '';
+        this.history.forEach((item, idx) => {
+            const li = document.createElement('li');
+            li.className = 'history-item';
+            li.innerHTML = `
+                <button class="history-expression" data-index="${idx}" title="Use this result">
+                    <span class="exp">${this.escapeHtml(item.expression)}</span>
+                    <span class="eq">=</span>
+                    <span class="res">${this.escapeHtml(item.result)}</span>
+                </button>
+            `;
+            this.historyList.appendChild(li);
+        });
+        // Click to reuse result
+        this.historyList.querySelectorAll('.history-expression').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const idx = parseInt(e.currentTarget.getAttribute('data-index'));
+                const chosen = this.history[idx];
+                if (chosen) {
+                    this.currentInput = String(chosen.result);
+                    this.updateDisplay();
+                }
+            });
+        });
+    }
+
+    clearHistory() {
+        this.history = [];
+        this.persistPreferences();
+        this.renderHistory();
+    }
+
+    escapeHtml(str) {
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+    }
     
     showError() {
         this.input.value = "Error";
@@ -373,7 +448,63 @@ class AdvancedCalculator {
     toRadians(degrees) {
         return degrees * (Math.PI / 180);
     }
-    
+
+    // === Theme (Day/Night) ===
+    toggleTheme() {
+        const willBeLight = !document.body.classList.contains('theme-light');
+        document.body.classList.toggle('theme-light', willBeLight);
+        document.body.classList.toggle('theme-dark', !willBeLight);
+        const icon = document.querySelector('.theme-icon');
+        if (icon) icon.textContent = willBeLight ? '🌙' : '☀️';
+        this.persistPreferences();
+    }
+
+    applyTheme(isDark) {
+        if (isDark) {
+            document.body.classList.remove('theme-light');
+            document.body.classList.add('theme-dark');
+            const icon = document.querySelector('.theme-icon');
+            if (icon) icon.textContent = '☀️';
+        } else {
+            document.body.classList.add('theme-light');
+            document.body.classList.remove('theme-dark');
+            const icon = document.querySelector('.theme-icon');
+            if (icon) icon.textContent = '🌙';
+        }
+    }
+
+    // === Persistence (localStorage) ===
+    persistPreferences() {
+        const data = {
+            isScientificMode: this.isScientificMode,
+            history: this.history,
+            themeDark: document.body.classList.contains('theme-dark')
+        };
+        try { localStorage.setItem('advCalcPrefs', JSON.stringify(data)); } catch {}
+    }
+
+    restorePreferences() {
+        try {
+            const raw = localStorage.getItem('advCalcPrefs');
+            if (!raw) return;
+            const data = JSON.parse(raw);
+            if (data) {
+                // Theme
+                this.applyTheme(!!data.themeDark);
+                // Mode
+                if (data.isScientificMode) {
+                    this.isScientificMode = true;
+                    this.calculator.classList.add('scientific');
+                    this.toggleText.textContent = 'Standard';
+                }
+                // History
+                if (Array.isArray(data.history)) {
+                    this.history = data.history.slice(0, 20);
+                }
+            }
+        } catch {}
+    }
+
     factorial(n) {
         if (n < 0 || n !== Math.floor(n)) {
             throw new Error('Invalid input for factorial');
