@@ -40,10 +40,15 @@
         <!-- Header with mode toggle -->
         <div class="header">
           <h2 class="calculator-title">Calculator</h2>
-          <button class="mode-toggle" id="modeToggle">
-            <span class="toggle-text">Scientific</span>
-            <div class="toggle-slider"></div>
-          </button>
+          <div class="header-actions">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle Day/Night">
+              <span class="theme-icon">🌙</span>
+            </button>
+            <button class="mode-toggle" id="modeToggle">
+              <span class="toggle-text">Scientific</span>
+              <div class="toggle-slider"></div>
+            </button>
+          </div>
         </div>
 
         <!-- Display -->
@@ -77,38 +82,48 @@
           </div>
         </div>
 
-        <!-- Standard Calculator Buttons -->
-        <div class="button-grid">
-          <div class="button-row">
-            <button class="button operator clear">AC</button>
-            <button class="button operator">DEL</button>
-            <button class="button operator">%</button>
-            <button class="button operator">/</button>
+        <!-- Standard Calculator Buttons + History Sidebar Wrap -->
+        <div class="content-wrap">
+          <div class="button-grid">
+            <div class="button-row">
+              <button class="button operator clear">AC</button>
+              <button class="button operator">DEL</button>
+              <button class="button operator">%</button>
+              <button class="button operator">/</button>
+            </div>
+            <div class="button-row">
+              <button class="button number">7</button>
+              <button class="button number">8</button>
+              <button class="button number">9</button>
+              <button class="button operator">*</button>
+            </div>
+            <div class="button-row">
+              <button class="button number">4</button>
+              <button class="button number">5</button>
+              <button class="button number">6</button>
+              <button class="button operator">-</button>
+            </div>
+            <div class="button-row">
+              <button class="button number">1</button>
+              <button class="button number">2</button>
+              <button class="button number">3</button>
+              <button class="button operator">+</button>
+            </div>
+            <div class="button-row">
+              <button class="button number">00</button>
+              <button class="button number">0</button>
+              <button class="button operator">.</button>
+              <button class="button equalBtn">=</button>
+            </div>
           </div>
-          <div class="button-row">
-            <button class="button number">7</button>
-            <button class="button number">8</button>
-            <button class="button number">9</button>
-            <button class="button operator">*</button>
-          </div>
-          <div class="button-row">
-            <button class="button number">4</button>
-            <button class="button number">5</button>
-            <button class="button number">6</button>
-            <button class="button operator">-</button>
-          </div>
-          <div class="button-row">
-            <button class="button number">1</button>
-            <button class="button number">2</button>
-            <button class="button number">3</button>
-            <button class="button operator">+</button>
-          </div>
-          <div class="button-row">
-            <button class="button number">00</button>
-            <button class="button number">0</button>
-            <button class="button operator">.</button>
-            <button class="button equalBtn">=</button>
-          </div>
+          <!-- History Panel -->
+          <aside class="history" id="historyPanel" aria-label="Calculation History">
+            <div class="history-header">
+              <span>History</span>
+              <button id="clearHistory" class="history-clear" title="Clear History">✖</button>
+            </div>
+            <ul id="historyList" class="history-list"></ul>
+          </aside>
         </div>
       </div>
     </div>
